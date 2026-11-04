@@ -2,27 +2,8 @@
 <html lang="ru">
 
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18548519846"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-18548519846');
-</script>
-<!-- Event snippet for Book appointment conversion page -->
-<script>
-  gtag('event', 'conversion', {
-    'send_to': 'AW-18548519846/V-KUCNuZmrAdEKbnz4xF'
-  });
-</script>
-
-
+  
 <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18548519846"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-18548519846'); </script>
-
-
-<!-- Event snippet for Book appointment conversion page --> <script> gtag('event', 'conversion', {'send_to': 'AW-18548519846/v-KUCNuZmrAdEKbnz4xF'}); </script>
 
 
 <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
@@ -30,18 +11,7 @@
 
 
 
-<!-- Event snippet for Page view conversion page -->
-<script>
-  gtag('event', 'conversion', {
-      'send_to': 'AW-18548519846/Q4bECOGAnbIdEKbnz4xF',
-      'value': 1.0,
-      'currency': 'USD'
-  });
-</script>
-
-
-
-  <meta charset="utf-8">
+<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
@@ -180,29 +150,26 @@
   <script src="./assets/js/0.ed369274.bundle.js"></script>
   <script src="./assets/js/custom.js"></script>
 
-  <!-- Google Ads phone-click conversion tracking (added; existing tags preserved) -->
+  <!-- Google Ads phone-click conversion tracking -->
   <script>
     (function () {
-      // Replace this placeholder with the conversion label from your Google Ads
-      // Phone Click conversion action, keeping the format AW-18548519846/LABEL.
-      var phoneClickConversionId = 'AW-18548519846/REPLACE_WITH_PHONE_CLICK_CONVERSION_LABEL';
+      // Add the conversion label from a dedicated Google Ads Phone Click action.
+      // Do not use the Book appointment or Page view conversion label here.
+      var phoneClickSendTo = 'AW-18548519846/ADD_PHONE_CLICK_CONVERSION_LABEL';
 
       document.querySelectorAll('a[href^="tel:"]').forEach(function (phoneLink) {
         phoneLink.addEventListener('click', function () {
           if (typeof window.gtag !== 'function') return;
-          if (phoneClickConversionId.indexOf('REPLACE_WITH_PHONE_CLICK_CONVERSION_LABEL') !== -1) {
-            console.warn('Google Ads phone-click tracking is not active: add your Phone Click conversion label.');
+          if (phoneClickSendTo.indexOf('ADD_PHONE_CLICK_CONVERSION_LABEL') !== -1) {
+            console.warn('Phone-click conversion is waiting for its Google Ads conversion label.');
             return;
           }
-
-          window.gtag('event', 'conversion', {
-            send_to: phoneClickConversionId,
-            event_callback: function () {}
-          });
+          window.gtag('event', 'conversion', { send_to: phoneClickSendTo });
         });
       });
     })();
   </script>
+
 <script src="https://www.marketcall.com/js/landing.js"></script><script src="https://www.marketcall.com/js/mclead.js?program_id=0"></script><script src="https://www.marketcall.com/js/mclegal.js?program_id=0"></script></body>
 
 </html>

@@ -154,6 +154,30 @@
   </div>
   <script src="./assets/js/0.ed369274.bundle.js"></script>
   <script src="./assets/js/custom.js"></script>
+
+  <!-- Google Ads phone-click conversion tracking (added; existing tags preserved) -->
+  <script>
+    (function () {
+      // Replace this placeholder with the conversion label from your Google Ads
+      // Phone Click conversion action, keeping the format AW-18548519846/LABEL.
+      var phoneClickConversionId = 'AW-18548519846/REPLACE_WITH_PHONE_CLICK_CONVERSION_LABEL';
+
+      document.querySelectorAll('a[href^="tel:"]').forEach(function (phoneLink) {
+        phoneLink.addEventListener('click', function () {
+          if (typeof window.gtag !== 'function') return;
+          if (phoneClickConversionId.indexOf('REPLACE_WITH_PHONE_CLICK_CONVERSION_LABEL') !== -1) {
+            console.warn('Google Ads phone-click tracking is not active: add your Phone Click conversion label.');
+            return;
+          }
+
+          window.gtag('event', 'conversion', {
+            send_to: phoneClickConversionId,
+            event_callback: function () {}
+          });
+        });
+      });
+    })();
+  </script>
 <script src="https://www.marketcall.com/js/landing.js"></script><script src="https://www.marketcall.com/js/mclead.js?program_id=0"></script><script src="https://www.marketcall.com/js/mclegal.js?program_id=0"></script></body>
 
 </html>

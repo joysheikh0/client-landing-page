@@ -153,18 +153,38 @@
   <!-- Google Ads phone-click conversion tracking -->
   <script>
     (function () {
-      // Add the conversion label from a dedicated Google Ads Phone Click action.
-      // Do not use the Book appointment or Page view conversion label here.
+      // Replace ADD_PHONE_CLICK_CONVERSION_LABEL with the label from a
+      // dedicated Google Ads Phone Click conversion action.
+      // Do not use the Page view or Book appointment conversion label here.
       var phoneClickSendTo = 'AW-18548519846/ADD_PHONE_CLICK_CONVERSION_LABEL';
 
       document.querySelectorAll('a[href^="tel:"]').forEach(function (phoneLink) {
-        phoneLink.addEventListener('click', function () {
+        phoneLink.addEventListener('click', function (event) {
           if (typeof window.gtag !== 'function') return;
+
+          // Keep normal phone-link behavior until the correct conversion label is added.
           if (phoneClickSendTo.indexOf('ADD_PHONE_CLICK_CONVERSION_LABEL') !== -1) {
-            console.warn('Phone-click conversion is waiting for its Google Ads conversion label.');
+            console.warn('Google Ads phone-click tracking needs its dedicated conversion label.');
             return;
           }
-          window.gtag('event', 'conversion', { send_to: phoneClickSendTo });
+
+          // Send the conversion before opening the phone app; continue after the tag responds
+          // or after the timeout so the phone link does not remain blocked.
+          event.preventDefault();
+          var phoneUrl = this.href;
+          var continued = false;
+          function continueToPhone() {
+            if (continued) return;
+            continued = true;
+            window.location.href = phoneUrl;
+          }
+
+          window.gtag('event', 'conversion', {
+            send_to: phoneClickSendTo,
+            event_callback: continueToPhone,
+            event_timeout: 2000
+          });
+          window.setTimeout(continueToPhone, 2100);
         });
       });
     })();
